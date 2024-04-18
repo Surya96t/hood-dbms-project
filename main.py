@@ -5,9 +5,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template("base.html")
+    return render_template("home.html")
 
-
+@app.route('/mk_res')
+def mk_res():
+    return render_template("make_reservation.html")
 
 
 if __name__ == '__main__':

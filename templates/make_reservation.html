@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}Make Reservation{% endblock %}
+
+{% block contents %}
+
+<div class="body-container">
+    <div class="container">
+        <h1 class="reserve-title">Reserve Now!!</h1>
+        <form action="/vw_res" method="POST">
+            <div class="main-res-info">
+                <!-- Customer Name Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-name">Name</label>
+                    <input type="text" id="cust-name" name="cust-name" placeholder="Enter Full Name" required />
+                </div>
+        
+                <!-- Customer Email Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-email">Email</label>
+                    <input type="email" id="cust-email" name="cust-email" placeholder="Enter Email" required/>
+                </div>
+        
+                <!-- Customer Phone Number Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-num">Number</label>
+                    <input type="tel" id="cust-num" name="cust-num" placeholder="Enter Number" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
+                </div>
+        
+                <!-- Customer Date Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-date">Date</label>
+                    <input type="date" id="cust-date" name="cust-date" required />
+                </div>
+        
+                <!-- Customer Time Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-time">Time</label>
+                    <input type="time" id="cust-time" name="cust-time" required />
+                </div>
+        
+                <!-- Customer Party Size Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-size">Party Size</label>
+                    <input type="number" id="cust-size" name="cust-size" placeholder="Enter Party Size" min="1" />
+                </div>
+        
+                <!-- Customer Special Request Input Box-->
+                <div class="res-input-box">
+                    <label for="cust-requests">Special Requests</label>
+                    <input type="text" id="cust-requests" name="cust-requests" placeholder=" " />
+                </div>
+            </div>
+            <div class="form-submit-btn">
+                <input type="submit" value="Make Reservation">
+            </div>
+        </form>
+    </div>
+</div> 
+
+
+{% endblock %}
