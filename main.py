@@ -11,6 +11,13 @@ def home():
 def mk_res():
     return render_template("make_reservation.html")
 
+@app.route('/check_res')
+def check_res():
+    return render_template("check_reservation.html")
+
+@app.route('/order_food')
+def order_fod():
+    return render_template("order_food.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
