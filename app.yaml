@@ -1,0 +1,8 @@
+#app.yaml
+runtime: python39
+
+env_variables:
+  CLOUD_SQL_USERNAME: sm70
+  CLOUD_SQL_PASSWORD: password
+  CLOUD_SQL_DATABASE_NAME: sm70-db
+  CLOUD_SQL_CONNECTION_NAME: hood-sm70:us-east4:sm70-db
