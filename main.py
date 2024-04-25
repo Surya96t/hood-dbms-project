@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify
-from db import add_reservation
+from db import add_reservation, add_membership
 
 app = Flask(__name__)
 
@@ -48,6 +48,22 @@ def add_res():
     # add_reservation(name, email, number, date, time, size, splreq)
     
     return(redirect(url_for('vw_res')))
+
+@app.route('/new_membership')
+def new_membership():
+    return render_template("new_membership.html")
+
+@app.route('/add_member', methods=['POST'])
+def add_member():
+    name = request.form['mem-name']
+    email = request.form['mem-email']
+    number = request.form['mem-num']
+    dob = request.form['mem-date']
+    address = request.form['mem-address']
+
+    add_membership(name, email, number, dob, address)
+    
+    return redirect(url_for('member_congrats.html'))
 
 if __name__ == '__main__':
     app.run(debug=True)

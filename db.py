@@ -21,6 +21,7 @@ def open_connection():
                                    )
     except pymysql.MySQLError as e:
         return e
+    
     return conn
 
 
@@ -45,4 +46,16 @@ def add_reservation(name, email, number, date, time, size, splreq):
         cursor.execute(sql, (cust_id, f"{date} {time}", size, '1', splreq))
         conn.commit()
     
+    conn.close()
+    
+    
+def add_membership(name, email, number, dob, address):
+    conn = open_connection()
+    
+    # Insert the data into customer table
+    with conn.cursor() as cursor:
+        sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
+        cursor.execute(sql, (name, email, number, address, dob, True))
+        conn.commit()
+        
     conn.close()
