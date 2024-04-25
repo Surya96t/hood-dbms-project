@@ -20,7 +20,7 @@ def vw_res():
     return render_template('view_reservation.html')
 
 @app.route('/order_food')
-def order_fod():
+def order_food():
     return render_template("order_food.html")
 
 @app.route('/add_res', methods=['POST'])
