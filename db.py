@@ -41,7 +41,7 @@ def add_reservation(name, email, number, date, time, size, splreq):
     #     cust_id = cursor.fetchone()[0]  # PhoneNumber instead of cust_id
         
     # Third create the reservation (insert details into reservation table)
-    with conn.cursor as cursor:
+    with conn.cursor() as cursor:
         sql = "INSERT INTO reservation (PhoneNumber, reservationDateTime, size, specialRequests) VALUES(%s, %s, %s, %s,)"
         cursor.execute(sql, (number, f"{date} {time}", size, splreq))
         conn.commit()
