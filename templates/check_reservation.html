@@ -7,11 +7,11 @@
 <div class="body-container">
     <div class="container">
         <h1 class="reserve-title">View your Reservation</h1>
-        <form action="/vw_res" method="POST">                    <!-- ? Should be "/check_res" ?? -->
+        <form action="/check_res" method="POST">                    <!-- ? Should be "/check_res" ?? -->
             <div class="main-res-info">
                 <div class="check-res-input-box">
                     <label for="cust-res">Phone Number</label>
-                    <input type="number" id="cust-res" name="cust-res" placeholder="Enter Reservation ID" required />
+                    <input type="number" id="cust-res-num" name="cust-res-num" placeholder="Enter Phone Number" required />
                 </div>
             </div>
             <div class="form-submit-btn">
@@ -20,6 +20,17 @@
         </form>
         <div class="check-res-link">
             <a href="/mk_res">Don't have reservation? Make one now!</a>
+        </div>
+        <div class="res-detail-container">
+            <h1 class="view-reserve-title">Your Reservation Details</h1>
+            {% for res in reservation %}
+                <div class="reserve-name">Name: {{res.name}}</div>
+                <div class="reserve-email">Email: {{res.email}}</div>
+                <div class="reserve-number">Phone Number: {{res.PhoneNumber}}</div>
+                <div class="reserve-datetime">Date and time: {{res.reservationDateTime}}</div>
+                <div class="reserve-size">Party size: {{res.size}}</div>
+                <div class="reserve-splreq">Special Requests: {{res.specialRequests}}</div>
+            {% endfor %}    
         </div>
     </div>
 </div>

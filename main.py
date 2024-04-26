@@ -13,18 +13,6 @@ def home():
 def mk_res():
     return render_template("make_reservation.html")
     
-# Check reservation using phone number 
-@app.route('/check_res')
-def check_res():
-    reservation = get_reservation(number)
-    return render_template("check_reservation.html")
-
-
-# View the reservation details
-@app.route('/vw_res')
-def vw_res():
-    return render_template('view_reservation.html', reservation=reservation)
-
 @app.route('/add_res', methods=['POST'])
 def add_res():
     name = request.form['cust-name']
@@ -36,9 +24,27 @@ def add_res():
     splreq = request.form['cust-requests']
 
     add_reservation(name, email, number, date, time, size, splreq)
-    reservation = get_reservation(number)
     
-    return(redirect(url_for('vw_res', reservation=reservation)))
+    return redirect(url_for('res_congrats'))
+
+@app.route('/res_congrats')
+def res_congrats():
+    return render_template('res_congrats.html')
+
+# Check reservation using phone number 
+@app.route('/check_res', methods=['POST'])
+def check_res():
+    number = request.form['cust-res-num']
+    reservation = get_reservation(number)
+    return render_template("check_reservation.html", reservation=reservation)
+
+
+# View the reservation details
+@app.route('/vw_res')
+def vw_res():
+    return render_template('view_reservation.html')
+
+
 
 
 # For Food Ordering stuff 
