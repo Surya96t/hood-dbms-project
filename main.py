@@ -32,11 +32,13 @@ def res_congrats():
     return render_template('res_congrats.html')
 
 # Check reservation using phone number 
-@app.route('/check_res')
+@app.route('/check_res', methods=['POST'])
 def check_res():
-    # number = request.form['cust-res-num']
-    # reservation = get_reservation(number)
-    return render_template("check_reservation.html")
+    if request.method == 'POST':
+        number = request.form['cust-res-num']
+        reservation = get_reservation(number)
+
+    return render_template("check_reservation.html", reservation=reservation)
 
 
 # View the reservation details
