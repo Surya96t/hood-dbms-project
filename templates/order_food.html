@@ -15,132 +15,155 @@
             <td width="200px">SUBTOTAL</td>
         </tr>
         <tr>
-            <td>A. MACARONI AND CHEESE</td> <!-- Item name -->
-            <td>Rp. 20.000</td>
+            <td>Hamburger</td> <!-- Item name -->
+            <td>$9.99</td>
             <td><button onclick="decreaseA()">-</button><button onclick="increaseA()">+</button><input type="text" id="aa" value="0"></td> <!-- Item quantity -->
             <td><input type="text" id="one" value="0"></td> <!-- Item subtotal -->
         </tr>
         <tr>
-            <td>B. CHEESE LASAGNA</td>
-            <td>Rp. 30.000</td>
+            <td>Ceasar Salad</td>
+            <td>$7.99</td>
             <td><button onclick="decreaseB()">-</button><button onclick="increaseB()">+</button><input type="text" id="bb" value="0"></td>
             <td><input type="text" id="two" value="0"></td>
         </tr>
         <tr>
-            <td>C. MOZZARELLA CHEESE OMELETTE</td>
-            <td>Rp. 40.000</td>
+            <td>Spaghetti Carbonara</td>
+            <td>$12.99</td>
             <td><button onclick="decreaseC()">-</button><button onclick="increaseC()">+</button><input type="text" id="cc" value="0"></td>
             <td><input type="text" id="three" value="0"></td>
         </tr>
         <tr>
-            <td>D. OREO CHEESECAKE</td>
-            <td>Rp. 30.000</td>
+            <td>Cheesecake</td>
+            <td>$5.99</td>
             <td><button onclick="decreaseD()">-</button><button onclick="increaseD()">+</button><input type="text" id="dd" value="0"></td>
             <td><input type="text" id="four" value="0"></td>
         </tr>
         <tr>
-            <td>E. OREO MILKSHAKE</td>
-            <td>Rp. 20.000</td>
+            <td>Constitution Cooler</td>
+            <td>$6.49</td>
             <td><button onclick="decreaseE()">-</button><button onclick="increaseE()">+</button><input type="text" id="ee" value="0"></td>
             <td><input type="text" id="five" value="0"></td>
+        </tr>
+        <tr>
+            <td>Freedom Fizz</td>
+            <td>$8.49</td>
+            <td><button onclick="decreaseF()">-</button><button onclick="increaseF()">+</button><input type="text" id="ff" value="0"></td>
+            <td><input type="text" id="six" value="0"></td>
         </tr>
         <tr>
             <td colspan="4"><hr align="center"></td>
         <tr>
             <td colspan="3">GRAND TOTAL</td>
-            <td id="total"></td>
+            <td id="total" class="total"></td>
         </tr>
         <script type="text/javascript">
             var aa = 0;
             function increaseA(){
-                aa += 20000;
+                aa += 9.99;
                 document.getElementById('one').value = aa;
-                document.getElementById('aa').value = aa/20000;
+                document.getElementById('aa').value = aa/9.99;
                 bill();
             }
             function decreaseA(){
                 if(aa > 0){
-                    aa -= 20000;
+                    aa -= 9.99;
                     document.getElementById('one').value = aa;
-                    document.getElementById('aa').value = aa/20000;
+                    document.getElementById('aa').value = aa/9.99;
                 bill();
                 }
             }
             var bb = 0;
             function increaseB(){
-                bb += 30000;
+                bb += 7.99;
                 document.getElementById('two').value = bb;
-                document.getElementById('bb').value = bb/30000;
+                document.getElementById('bb').value = bb/7.99;
                 bill();
             }
             function decreaseB(){
                 if(bb > 0){
-                    bb -= 30000;
+                    bb -= 7.99;
                     document.getElementById('two').value = bb;
-                    document.getElementById('bb').value = bb/30000;
+                    document.getElementById('bb').value = bb/7.99;
                 bill();
                 }
             }
             var cc = 0;
             function increaseC(){
-                cc += 40000;
+                cc += 12.99;
                 document.getElementById('three').value = cc;
-                document.getElementById('cc').value = cc/40000;
+                document.getElementById('cc').value = cc/12.99;
                 bill();
             }
             function decreaseC(){
                 if(cc > 0){
-                    cc -= 40000;
+                    cc -= 12.99;
                     document.getElementById('three').value = cc;
-                    document.getElementById('cc').value = cc/40000;
+                    document.getElementById('cc').value = cc/12.99;
                 bill();
                 }
             }
             var dd = 0;
             function increaseD(){
-                dd += 30000;
+                dd += 5.99;
                 document.getElementById('four').value = dd;
-                document.getElementById('dd').value = dd/30000;
+                document.getElementById('dd').value = dd/5.99;
                 bill();
             }
             function decreaseD(){
                 if(dd > 0){
-                    dd -= 30000;
+                    dd -= 5.99;
                     document.getElementById('four').value = dd;
-                    document.getElementById('dd').value = dd/30000;
+                    document.getElementById('dd').value = dd/5.99;
                 bill();
                 }
             }
             var ee = 0;
             function increaseE(){
-                ee += 20000;
+                ee += 6.49;
                 document.getElementById('five').value = ee;
-                document.getElementById('ee').value = ee/20000;
+                document.getElementById('ee').value = ee/6.49;
                 bill();
             }
             function decreaseE(){
                 if(ee > 0){
-                    ee -= 20000;
+                    ee -= 6.49;
                     document.getElementById('five').value = ee;
-                    document.getElementById('ee').value = ee/20000;
+                    document.getElementById('ee').value = ee/6.49;
+                bill();
+                }
+            }
+            var ff = 0;
+            function increaseF(){
+                ff += 8.49;
+                document.getElementById('six').value = ff;
+                document.getElementById('ff').value = ff/8.49;
+                bill();
+            }
+            function decreaseF(){
+                if(ff > 0){
+                    ff -= 8.49;
+                    document.getElementById('six').value = ff;
+                    document.getElementById('ff').value = ff/8.49;
                 bill();
                 }
             }
             function bill() {
-                 total1= aa + bb + cc + dd + ee;
+                 total1= aa + bb + cc + dd + ee + ff;
                 document.getElementById("total").innerHTML = total1;
             }
             function list() {
                  if(aa>0)
-                 document.getElementById("MAC").innerHTML = "MACARONI AND CHEESE ("+aa/20000 + ")";
+                 document.getElementById("HAM").innerHTML = "Hamburger ("+aa/9.99 + ")";
                  if(bb>0)
-                 document.getElementById("LAS").innerHTML = "CHEESE LASAGNA ("+bb/30000 + ")";
+                 document.getElementById("CSA").innerHTML = "Ceasar Salad ("+bb/7.99 + ")";
                  if(cc>0)
-                 document.getElementById("OME").innerHTML = "MOZZARELLA CHEESE OMELETTE ("+cc/40000 + ")";
+                 document.getElementById("SPA").innerHTML = "Spaghetti Carbonara ("+cc/12.99 + ")";
                  if(dd>0)
-                 document.getElementById("OCH").innerHTML = "OREO CHEESECAKE ("+dd/30000 + ")";
+                 document.getElementById("CHC").innerHTML = "Cheesecake ("+dd/5.99 + ")";
                  if(ee>0)
-                 document.getElementById("OMI").innerHTML = "OREO MILKSHAKE ("+ee/20000 + ")";
+                 document.getElementById("CCC").innerHTML = "Constitution Cooler ("+ee/6.49 + ")";
+                 if(ff>0)
+                 document.getElementById("FRF").innerHTML = "Freedom Fizz ("+ee/8.49 + ")";
                  document.getElementById("lister").innerHTML = total1;
                  emp();
             }
@@ -160,6 +183,9 @@
             ee = 0;
             document.getElementById('five').value = 0;
             document.getElementById('ee').value = 0;
+            ff = 0;
+            document.getElementById('six').value = 0;
+            document.getElementById('ff').value = 0;
             }	
         </script>
     </table>
@@ -168,11 +194,12 @@
     <center><button class="order-submit" onclick="list()">Submit</button></center>
     <center><p>Invoice :</p></center>
 
-    <p><div class="invoice" id="MAC" align="center" ></div></p>
-    <p><div class="invoice" id="LAS" align="center"></div></p>
-    <p><div class="invoice" id="OME" align="center"></div></p>
-    <p><div class="invoice" id="OCH" align="center"></div></p>
-    <p><div class="invoice" id="OMI" align="center"></div></p>
+    <p><div class="invoice" id="HAM" align="center" ></div></p>
+    <p><div class="invoice" id="CSA" align="center"></div></p>
+    <p><div class="invoice" id="SPA" align="center"></div></p>
+    <p><div class="invoice" id="CHC" align="center"></div></p>
+    <p><div class="invoice" id="CCC" align="center"></div></p>
+    <p><div class="invoice" id="FRF" align="center"></div></p>
     <p><div class="invoice" id="lister" align="center"></div></p>
 
 </div>
