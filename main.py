@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify
-from db import add_reservation, add_membership
+from db import add_reservation, add_membership, get_reservation
 
 app = Flask(__name__)
 
@@ -7,21 +7,22 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
+
+# Make a reservation 
 @app.route('/mk_res')
 def mk_res():
     return render_template("make_reservation.html")
     
+# Check reservation using phone number 
 @app.route('/check_res')
 def check_res():
     return render_template("check_reservation.html")
 
+
+# View the reservation details
 @app.route('/vw_res')
 def vw_res():
     return render_template('view_reservation.html')
-
-@app.route('/order_food')
-def order_food():
-    return render_template("order_food.html")
 
 @app.route('/add_res', methods=['POST'])
 def add_res():
@@ -32,22 +33,22 @@ def add_res():
     time = request.form['cust-time']
     size = request.form['cust-size']
     splreq = request.form['cust-requests']
-    
-    # print(f"Type Number: {type(number)}")
-    # print(f"Tyoe date: {type(date)}")
-    # print(f"Type time: {type(time)}")
-    
-    # print(f"Customer Name: {name}")
-    # print(f"Customer Name: {email}")
-    # print(f"Customer Name: {number}")
-    # print(f"Customer Name: {date}")
-    # print(f"Customer Name: {time}")
-    # print(f"Customer Name: {size}")
-    # print(f"Customer Name: {splreq}")
 
-    # add_reservation(name, email, number, date, time, size, splreq)
+    add_reservation(name, email, number, date, time, size, splreq)
+    reservation = get_reservation(number)
     
-    return(redirect(url_for('vw_res')))
+    return(redirect(url_for('vw_res', reservation=reservation)))
+
+
+# For Food Ordering stuff 
+
+@app.route('/order_food')
+def order_food():
+    return render_template("order_food.html")
+
+
+
+# For Membership stuff
 
 @app.route('/new_membership')
 def new_membership():
