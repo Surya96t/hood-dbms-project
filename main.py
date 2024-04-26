@@ -20,9 +20,9 @@ def check_res():
 
 
 # View the reservation details
-@app.route('/vw_res')
+@app.route('/vw_res/<name>')
 def vw_res():
-    return render_template('view_reservation.html')
+    return render_template('view_reservation.html', name=name)
 
 @app.route('/add_res', methods=['POST'])
 def add_res():
