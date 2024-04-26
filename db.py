@@ -38,7 +38,7 @@ def add_reservation(name, email, number, date, time, size, splreq):
     with conn.cursor() as cursor:
         sql = "SELECT customerID FROM customers WHERE email = %s"
         cursor.execute(sql, (email))
-        cust_id = cursor.fetchone()[0]
+        cust_id = cursor.fetchone()[0]  # PhoneNumber instead of cust_id
         
     # Third create the reservation (insert details into reservation table)
     with conn.cursor as cursor:

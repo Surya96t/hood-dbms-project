@@ -65,5 +65,10 @@ def add_member():
     
     return redirect(url_for('member_congrats.html'))
 
+
+@app.route('/member_congrats')
+def member_congrats():
+    return render_template("member_congrats.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
