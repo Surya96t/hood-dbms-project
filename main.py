@@ -16,13 +16,14 @@ def mk_res():
 # Check reservation using phone number 
 @app.route('/check_res')
 def check_res():
+    reservation = get_reservation(number)
     return render_template("check_reservation.html")
 
 
 # View the reservation details
-@app.route('/vw_res/<name>')
+@app.route('/vw_res')
 def vw_res():
-    return render_template('view_reservation.html', name=name)
+    return render_template('view_reservation.html', reservation=reservation)
 
 @app.route('/add_res', methods=['POST'])
 def add_res():
