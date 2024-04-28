@@ -53,8 +53,33 @@ def vw_res():
 
 # For Food Ordering stuff 
 
-@app.route('/order_food')
+@app.route('/order_food', methods=["GET", "POST"])
 def order_food():
+    ham_price = request.form['item_ham_price']
+    ham_quantity = request.form['ham_quantity']
+    
+    salad_price = request.form['item_salad_price']
+    salad_quantity = request.form['salad_quantity']
+    
+    spa_price = request.form['item_spa_price']
+    spa_quantity = request.form['spa_quantity']
+    
+    cheese_price = request.form['item_cheese_price']
+    cheese_quantity = request.form['cheese_quantity']
+    
+    cooler_price = request.form['item_cooler_price']
+    cooler_quantity = request.form['cooler_quantity']
+    
+    fizz_price = request.form['item_fizz_price']
+    fizz_quantity = request.form['fizz_quantity']
+    
+    print(ham_price, ham_quantity)
+    print(salad_price, salad_quantity)
+    print(spa_price, spa_quantity)
+    print(cheese_price, cheese_quantity)
+    print(cooler_price, cooler_quantity)
+    print(fizz_price, fizz_quantity)
+    
     return render_template("order_food.html")
 
 
