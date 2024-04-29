@@ -98,7 +98,7 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
     item_id_list = []
     with conn.cursor() as cursor:
         for itemName in itemList:
-            sql = f"SELECT itemID FROM menu_items WHERE iteamName = {itemName}"
+            sql = f"SELECT itemID FROM menu_items WHERE itemName = {itemName}"
             cursor.execute(sql)
             item_id = cursor.fetchone()
             item_id_list.append(item_id)
