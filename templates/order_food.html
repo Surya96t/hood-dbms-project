@@ -11,50 +11,78 @@
 
                 <div class="food-item-input">
                     <label for="item-1" name="item-1">
-                        <input type="hidden" id="item_ham_price" name="item_ham_price" value="9.99" />Hamburger
+                        <input type="hidden" id="item_ham_name" name="item_ham_name" value="Hamburger" />
+                        <input type="hidden" id="item_ham_price" name="item_ham_price" value="9.99" />Hamburger ($9.99)
                     </label>
-                    <input type="number" name="ham_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="ham_quantity" placeholder="Enter Quantity" value="0"/>
                 </div>
 
                 <div class="food-item-input">
                     <label for="item-2" name="item-2">
-                        <input type="hidden" id="item_salad_price" name="item_salad_price" value="7.99" />Ceasar Salad
+                        <input type="hidden" id="item_salad_name" name="item_salad_name" value="Caesar Salad" />
+                        <input type="hidden" id="item_salad_price" name="item_salad_price" value="7.99" />Ceasar Salad ($7.99)
                     </label>
-                    <input type="number" name="salad_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="salad_quantity" placeholder="Enter Quantity" value="0"/>
                 </div>
 
                 <div class="food-item-input">
                     <label for="item-3" name="item-3">
-                        <input type="hidden" id="item_spa_price" name="item_spa_price" value="12.99" />Spaghetti Carbonara
+                        <input type="hidden" id="item_spa_name" name="item_spa_name" value="Spaghetti Carbonara" />
+                        <input type="hidden" id="item_spa_price" name="item_spa_price" value="12.99" />Spaghetti Carbonara ($12.99)
                     </label>
-                    <input type="number" name="spa_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="spa_quantity" placeholder="Enter Quantity" value="0"/>
                 </div>
 
                 <div class="food-item-input">
                     <label for="item-3" name="item-3">
-                        <input type="hidden" id="item_cheese_price" name="item_cheese_price" value="5.99" />Cheesecake
+                        <input type="hidden" id="item_cheese_name" name="item_cheese_name" value="Cheesecake" />
+                        <input type="hidden" id="item_cheese_price" name="item_cheese_price" value="5.99" />Cheesecake ($5.99)
                     </label>
-                    <input type="number" name="cheese_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="cheese_quantity" placeholder="Enter Quantity" value="0"/>
                 </div>
 
                 <div class="food-item-input">
                     <label for="item-5" name="item-5">
-                        <input type="hidden" id="item_cooler_price" name="item_cooler_price" value="6.49" />Constitution Cooler
+                        <input type="hidden" id="item_cooler_name" name="item_cooler_name" value="Constitution Cooler" />
+                        <input type="hidden" id="item_cooler_price" name="item_cooler_price" value="6.49" />Constitution Cooler ($6.49)
                     </label>
-                    <input type="number" name="cooler_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="cooler_quantity" placeholder="Enter Quantity" value="0"/>
                 </div>
 
                 <div class="food-item-input">
                     <label for="item-6" name="item-6">
-                        <input type="hidden" id="item_fizz_price" name="item_fizz_price" value="8.49" />Freedom Fizz
+                        <input type="hidden" id="item_fizz_name" name="item_fizz_name" value="Freedom Fizz" />
+                        <input type="hidden" id="item_fizz_price" name="item_fizz_price" value="8.49" />Freedom Fizz ($8.49)
                     </label>
-                    <input type="number" name="fizz_quantity" placeholder="Enter Quantity" />
+                    <input type="number" name="fizz_quantity" placeholder="Enter Quantity" value="0" />
                 </div>
 
 
                 <!-- Delivery Details go here -->
 
-            
+                <div class="order-input-box">
+                    <label for="order-name">Name</label>
+                    <input type="text" id="order-name" name="order-name" placeholder="Enter Full Name" required />
+                </div>
+        
+                <!-- Customer Email Input Box-->
+                <div class="order-input-box">
+                    <label for="order-email">Email</label>
+                    <input type="email" id="order-email" name="order-email" placeholder="Enter Email" required/>
+                </div>
+        
+                <!-- Customer Phone Number Input Box-->
+                <div class="order-input-box">
+                    <label for="order-num">Number</label>
+                    <input type="tel" id="order-num" name="order-num" placeholder="Enter Number" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required/>
+                </div>
+                
+                <!-- Customer Address Input Box-->
+                <div class="order-input-box">
+                    <label for="order-address">Address</label>
+                    <input type="text" id="order-address" name="order-address" required />
+                </div>
+                
             </div>
             <div class="form-submit-btn">
                 <input type="submit"  value="Place Order">

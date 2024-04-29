@@ -66,3 +66,36 @@ def add_membership(name, email, number, dob, address):
         conn.commit()
         
     conn.close()
+    
+def add_order(number, totalBill, quantityList, itemList):
+    conn = open_connection()
+    
+    # First insert into any_order to generate orderID
+    with conn.cursor() as cursor:
+        sql = "INSERT INTO any_order (PhoneNumber, totalBill) VALUES (%s, %s)"
+        cursor.execute(sql, (number, totalBill))
+        conn.commit()
+        
+    # Getting the most recent orderID based on PhoneNumber
+    with conn.cursor() as cursor:
+        sql = f"SELECT MAX(orderID) FROM any_order WHERE PhoneNumber = {number}"
+        cursor.execute(sql)
+        order_id = cursor.fetchone()[0]
+        
+    # get itemID using item name.
+    item_id_list = []
+    with conn.cursor() as cursor:
+        for itemName in itemList:
+            sql = f"SELECT itemID FROM menu_items WHERE iteamName = {itemName}"
+            cursor.execute(sql)
+            item_id = cursor.fetchone()[0]
+            item_id_list.append(item_id)
+            
+            
+    with conn.cursor() as cursor: 
+        for i_id, item_quantity in zip(item_id_list, quantityList):
+            sql = "INSERT INTO order_items (orderID, itemID, quantity) VALUES (%s, %s, %s)"
+            cursor.execute(sql, (order_id, i_id, item_quantity))
+        conn.commit()
+    
+    conn.close()
