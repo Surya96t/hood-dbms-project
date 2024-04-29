@@ -62,7 +62,7 @@ def order_food():
         ham_price = request.form["item_ham_price"]
         ham_quantity = request.form["ham_quantity"]
         ham_subtotal = float(ham_price) * float(ham_quantity)
-        if ham_quantity > 0:
+        if int(ham_quantity) > 0:
             item_list.append(ham_name)
             quantity_list.append(ham_quantity)
 
@@ -70,7 +70,7 @@ def order_food():
         salad_price = request.form['item_salad_price']
         salad_quantity = request.form['salad_quantity']
         salad_subtotal = float(salad_price) * float(salad_quantity)
-        if salad_quantity > 0:
+        if int(salad_quantity) > 0:
             item_list.append(salad_name)
             quantity_list.append(salad_quantity)
         
@@ -79,7 +79,7 @@ def order_food():
         spa_price = request.form['item_spa_price']
         spa_quantity = request.form['spa_quantity']
         spa_subtotal = float(spa_price) * float(spa_quantity)
-        if spa_quantity > 0:
+        if int(spa_quantity) > 0:
             item_list.append(spa_name)
             quantity_list.append(spa_quantity)
         
@@ -87,7 +87,7 @@ def order_food():
         cheese_price = request.form['item_cheese_price']
         cheese_quantity = request.form['cheese_quantity']
         cheese_subtotal = float(cheese_price) * float(cheese_quantity)
-        if cheese_quantity > 0:
+        if int(cheese_quantity) > 0:
             item_list.append(cheese_name)
             quantity_list.append(cheese_quantity)
         
@@ -95,7 +95,7 @@ def order_food():
         cooler_price = request.form['item_cooler_price']
         cooler_quantity = request.form['cooler_quantity']
         cooler_subtotal = float(cooler_price) * float(cooler_quantity)
-        if cooler_quantity > 0:
+        if int(cooler_quantity) > 0:
             item_list.append(cooler_name)
             quantity_list.append(cooler_quantity)            
         
@@ -103,7 +103,7 @@ def order_food():
         fizz_price = request.form['item_fizz_price']
         fizz_quantity = request.form['fizz_quantity']
         fizz_subtotal = float(fizz_price) * float(fizz_quantity)
-        if fizz_quantity > 0:
+        if int(fizz_quantity) > 0:
             item_list.append(fizz_name)
             quantity_list.append(fizz_quantity)
         
