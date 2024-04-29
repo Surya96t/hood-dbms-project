@@ -93,6 +93,7 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         sql = f"SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = {number}"
         cursor.execute("SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = %s", [number])
         order_id = cursor.fetchone()
+        order_id = order_id["id"]
         print(order_id)
         
     # get itemID using item name.
@@ -102,7 +103,7 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
             #sql = f"SELECT itemID FROM menu_items WHERE itemName=?"
             cursor.execute("SELECT itemID FROM menu_items WHERE itemName = %s", [item_Name])
             item_id = cursor.fetchone()
-            item_id_list.append(item_id)
+            item_id_list.append(item_id["itemID"])
         print(item_id_list)
     # try:
     #     with conn.cursor() as cursor: 
