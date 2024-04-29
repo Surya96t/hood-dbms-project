@@ -67,9 +67,21 @@ def add_membership(name, email, number, dob, address):
         
     conn.close()
     
-def add_order(number, totalBill, quantityList, itemList):
+def add_order(name, email, number, address, totalBill, quantityList, itemList):
     conn = open_connection()
     
+    with conn.cursor() as cursor:
+        check_num = f"SELECT PhoneNumber FROM customers WHERE PhoneNumber = {number}"
+        cursor.execute(check_num)
+        result = cursor.fetchone()
+        if result:
+            pass
+        else:
+            sql = "INSERT INTO customers (name, email, PhoneNumber, address) VALUES (%s, %s, %s, %s)"
+            cursor.execute(sql, (name, email, number, address))
+            conn.commit()
+
+
     # First insert into any_order to generate orderID
     with conn.cursor() as cursor:
         sql = "INSERT INTO any_order (PhoneNumber, totalBill) VALUES (%s, %s)"
