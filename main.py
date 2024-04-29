@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify
-from db import add_reservation, add_membership, get_reservation
+from db import add_reservation, add_membership, get_reservation, add_order
 
 app = Flask(__name__)
 
@@ -57,47 +57,55 @@ def vw_res():
 def order_food():
     if request.method == "POST":
         item_list = []
+        quantity_list = []
         ham_name = request.form["item_ham_name"]
         ham_price = request.form["item_ham_price"]
         ham_quantity = request.form["ham_quantity"]
         ham_subtotal = float(ham_price) * float(ham_quantity)
-        if ham_subtotal > 0:
+        if ham_quantity > 0:
             item_list.append(ham_name)
-        
+            quantity_list.append(ham_quantity)
+
         salad_name = request.form["item_salad_name"]
         salad_price = request.form['item_salad_price']
         salad_quantity = request.form['salad_quantity']
         salad_subtotal = float(salad_price) * float(salad_quantity)
-        if salad_subtotal > 0:
+        if salad_quantity > 0:
             item_list.append(salad_name)
+            quantity_list.append(salad_quantity)
+        
         
         spa_name = request.form["item_spa_name"]
         spa_price = request.form['item_spa_price']
         spa_quantity = request.form['spa_quantity']
         spa_subtotal = float(spa_price) * float(spa_quantity)
-        if spa_subtotal > 0:
+        if spa_quantity > 0:
             item_list.append(spa_name)
+            quantity_list.append(spa_quantity)
         
         cheese_name = request.form["item_cheese_name"]
         cheese_price = request.form['item_cheese_price']
         cheese_quantity = request.form['cheese_quantity']
         cheese_subtotal = float(cheese_price) * float(cheese_quantity)
-        if cheese_subtotal > 0:
+        if cheese_quantity > 0:
             item_list.append(cheese_name)
+            quantity_list.append(cheese_quantity)
         
         cooler_name = request.form["item_cooler_name"]
         cooler_price = request.form['item_cooler_price']
         cooler_quantity = request.form['cooler_quantity']
         cooler_subtotal = float(cooler_price) * float(cooler_quantity)
-        if cooler_subtotal > 0:
+        if cooler_quantity > 0:
             item_list.append(cooler_name)
+            quantity_list.append(cooler_quantity)            
         
         fizz_name = request.form["item_fizz_name"]
         fizz_price = request.form['item_fizz_price']
         fizz_quantity = request.form['fizz_quantity']
         fizz_subtotal = float(fizz_price) * float(fizz_quantity)
-        if fizz_subtotal > 0:
+        if fizz_quantity > 0:
             item_list.append(fizz_name)
+            quantity_list.append(fizz_quantity)
         
         grand_total = ham_subtotal + salad_subtotal + spa_subtotal + cheese_subtotal + cooler_subtotal + fizz_subtotal
         
@@ -110,7 +118,7 @@ def order_food():
         # for subtotal in subtotal_list:
             
         
-        print(item_list)
+        #print(item_list)
         # print(ham_price, ham_quantity)
         # print(salad_price, salad_quantity)
         # print(spa_price, spa_quantity)
@@ -119,6 +127,8 @@ def order_food():
         # print(fizz_price, fizz_quantity)
         # print(f"The order is for {order_name}, \nEmail is: {order_email}, \nPhone Number: {order_number}, \nAddress: {order_address} \nGrand total is: ${grand_total}")
         # print(grand_total)
+
+        add_order(order_number, grand_total, quantity_list, item_list)
         
         return render_template("order_congrats.html")
     else:
