@@ -92,7 +92,7 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
     with conn.cursor() as cursor:
         sql = f"SELECT MAX(orderID) FROM any_order WHERE PhoneNumber = {number}"
         cursor.execute(sql)
-        order_id = cursor.fetchone()
+        order_id = cursor.fetchone()[0]
         
     # get itemID using item name.
     item_id_list = []
@@ -100,10 +100,20 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         for item_Name in itemList:
             #sql = f"SELECT itemID FROM menu_items WHERE itemName=?"
             cursor.execute("SELECT itemID FROM menu_items WHERE itemName = %s", [item_Name])
-            item_id = cursor.fetchone()
+            item_id = cursor.fetchone()[0]
             item_id_list.append(item_id)
             
-            
+    # try:
+    #     with conn.cursor() as cursor: 
+    #         for i_id, item_quantity in zip(item_id_list, quantityList):
+    #             print(f"order_id: {order_id}, i_id: {i_id}, item_quantity: {item_quantity}")
+    #             sql = "INSERT INTO order_items (orderID, itemID, quantity) VALUES (%s, %s, %s)"
+    #             cursor.execute(sql, (order_id, i_id, item_quantity))
+    #         conn.commit()
+    # except Exception as e:
+    #     print(f"Error occured: {e}")
+
+    
     with conn.cursor() as cursor: 
         for i_id, item_quantity in zip(item_id_list, quantityList):
             sql = "INSERT INTO order_items (orderID, itemID, quantity) VALUES (%s, %s, %s)"
