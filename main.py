@@ -128,7 +128,7 @@ def order_food():
         # print(f"The order is for {order_name}, \nEmail is: {order_email}, \nPhone Number: {order_number}, \nAddress: {order_address} \nGrand total is: ${grand_total}")
         # print(grand_total)
 
-        add_order(order_number, grand_total, quantity_list, item_list)
+        add_order(order_name, order_email, order_number, order_address, grand_total, quantity_list, item_list)
         
         return render_template("order_congrats.html")
     else:
