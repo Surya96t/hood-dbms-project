@@ -92,7 +92,8 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
     with conn.cursor() as cursor:
         sql = f"SELECT MAX(orderID) FROM any_order WHERE PhoneNumber = {number}"
         cursor.execute(sql)
-        order_id = cursor.fetchone()[0]
+        order_id = cursor.fetchone()
+        print(order_id)
         
     # get itemID using item name.
     item_id_list = []
@@ -100,9 +101,9 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         for item_Name in itemList:
             #sql = f"SELECT itemID FROM menu_items WHERE itemName=?"
             cursor.execute("SELECT itemID FROM menu_items WHERE itemName = %s", [item_Name])
-            item_id = cursor.fetchone()
+            item_id = cursor.fetchone()[0]
             item_id_list.append(item_id)
-            
+        print(item_id_list)
     # try:
     #     with conn.cursor() as cursor: 
     #         for i_id, item_quantity in zip(item_id_list, quantityList):
