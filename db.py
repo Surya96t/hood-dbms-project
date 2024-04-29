@@ -90,31 +90,20 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         
     # Getting the most recent orderID based on PhoneNumber
     with conn.cursor() as cursor:
-        sql = f"SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = {number}"
         cursor.execute("SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = %s", [number])
         order_id = cursor.fetchone()
         order_id = order_id["id"]
-        print(order_id)
+        
         
     # get itemID using item name.
     item_id_list = []
     with conn.cursor() as cursor:
         for item_Name in itemList:
-            #sql = f"SELECT itemID FROM menu_items WHERE itemName=?"
             cursor.execute("SELECT itemID FROM menu_items WHERE itemName = %s", [item_Name])
             item_id = cursor.fetchone()
             item_id_list.append(item_id["itemID"])
         print(item_id_list)
-    # try:
-    #     with conn.cursor() as cursor: 
-    #         for i_id, item_quantity in zip(item_id_list, quantityList):
-    #             print(f"order_id: {order_id}, i_id: {i_id}, item_quantity: {item_quantity}")
-    #             sql = "INSERT INTO order_items (orderID, itemID, quantity) VALUES (%s, %s, %s)"
-    #             cursor.execute(sql, (order_id, i_id, item_quantity))
-    #         conn.commit()
-    # except Exception as e:
-    #     print(f"Error occured: {e}")
-
+    
     
     with conn.cursor() as cursor: 
         for i_id, item_quantity in zip(item_id_list, quantityList):
