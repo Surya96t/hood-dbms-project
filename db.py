@@ -118,7 +118,7 @@ def get_cust_order_details(number):
     
     with conn.cursor() as cursor:
         sql = '''
-        SELECT c.Name, c.PhoneNumber, ao.totalBill
+        SELECT c.name, c.PhoneNumber, ao.totalBill
         FROM customers as c
         INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
         WHERE c.PhoneNumber = %s
