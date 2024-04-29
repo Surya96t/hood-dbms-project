@@ -6,10 +6,11 @@
     <div class="menu-container">
         <h1 class="menu-title">Congrats! Order Placed!</h1>
         
-        <p><br>{{cust_details.name}}</p>
-        <p><br>{{cust_details.PhoneNumber}}</p>
-        <p><br>{{cust_details.totalBill}}</p>
-         
+        {% for cust in cust_details %}
+            <p><br>Name: {{cust.Name}}</p>
+            <p><br>Number: {{cust.PhoneNumber}}</p>
+            <p><br>Grand Total: {{cust.totalBill}}</p>
+        {% endfor %} 
 
         {% for i in menu_details %}
             <p><br>{{i.itemName}}</p>

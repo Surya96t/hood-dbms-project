@@ -139,9 +139,10 @@ def get_items_order_detail(number):
         INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
         INNER JOIN order_items as oi ON ao.orderID = oi.orderID
         INNER JOIN menu_items as mi on oi.itemID = mi.itemID
-        WHERE c.PhoneNumber = %s;
+        WHERE c.PhoneNumber = %s
+        AND ao.orderID = (SELECT max(orderID) FROM any_order WHERE PhoneNumber = %s);
         '''
-        cursor.execute(sql, (number))
+        cursor.execute(sql, (number, number))
         menu_details = cursor.fetchall()
         
     return menu_details
