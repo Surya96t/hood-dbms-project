@@ -90,8 +90,8 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         
     # Getting the most recent orderID based on PhoneNumber
     with conn.cursor() as cursor:
-        sql = f"SELECT MAX(orderID) FROM any_order WHERE PhoneNumber = {number}"
-        cursor.execute(sql)
+        sql = f"SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = {number}"
+        cursor.execute("SELECT MAX(orderID) as id FROM any_order WHERE PhoneNumber = %s", [number])
         order_id = cursor.fetchone()
         print(order_id)
         
