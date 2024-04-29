@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for, jsonify, s
 from db import add_reservation, add_membership, get_reservation, add_order, get_order_details
 
 app = Flask(__name__)
+app.secret_key = "super secret key"
 
 @app.route('/')
 def home():
