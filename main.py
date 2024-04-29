@@ -121,6 +121,8 @@ def order_food():
 
         cust_details = get_cust_order_details(order_number)
         menu_details = get_items_order_detail(order_number)
+        print(cust_details, "\n")
+        print(menu_details, "\n")
 
         return render_template("order_congrats.html", cust_details=cust_details, menu_details=menu_details)
     else:
