@@ -113,7 +113,7 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
     
     conn.close()
     
-def get_order_details(number):
+def get_cust_order_details(number):
     conn = open_connection()
     
     with conn.cursor as cursor:
@@ -126,7 +126,11 @@ def get_order_details(number):
         '''
         cursor.execute(sql, (number, number))
         customer_bill_details = cursor.fetchall()
+        return customer_bill_details
         
+def get_items_order_detail(number):
+    conn = open_connection()
+
     with conn.cursor as cursor:
         sql = '''
         SELECT mi.itemName, mi.price
@@ -139,6 +143,6 @@ def get_order_details(number):
         cursor.execute(sql, (number))
         menu_details = cursor.fetchall()
         
-    return customer_bill_details, menu_details
+    return menu_details
         
         
