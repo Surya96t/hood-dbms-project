@@ -6,6 +6,17 @@
     <div class="menu-container">
         <h1 class="menu-title">Congrats! Order Placed!</h1>
     </div>
+    {% for cust in cust_details %}
+        <p>{{cust.name}}</p>
+        <p>{{cust.PhoneNumber}}</p>
+        <p>{{cust.totalBill}}</p>
+    {% endfor %}  
+
+    {% for i in menu_details %}
+        <p>{{i.itemName}}</p>
+        <p>{{i.price}}</p>
+    {% endfor %}  
+
 </div>
 
 

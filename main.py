@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect, request, url_for, jsonify
-from db import add_reservation, add_membership, get_reservation, add_order
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session
+from db import add_reservation, add_membership, get_reservation, add_order, get_order_details
 
 app = Flask(__name__)
 
@@ -113,27 +113,23 @@ def order_food():
         order_email = request.form["order-email"]
         order_number = request.form["order-num"]
         order_address = request.form["order-address"]
-        
-        # subtotal_list = [ham_subtotal, salad_subtotal, spa_subtotal, cheese_subtotal, cooler_subtotal, fizz_subtotal]
-        # for subtotal in subtotal_list:
-            
-        
-        #print(item_list)
-        # print(ham_price, ham_quantity)
-        # print(salad_price, salad_quantity)
-        # print(spa_price, spa_quantity)
-        # print(cheese_price, cheese_quantity)
-        # print(cooler_price, cooler_quantity)
-        # print(fizz_price, fizz_quantity)
-        # print(f"The order is for {order_name}, \nEmail is: {order_email}, \nPhone Number: {order_number}, \nAddress: {order_address} \nGrand total is: ${grand_total}")
-        # print(grand_total)
 
+        session["cust_order_number"] = order_number
+        
         add_order(order_name, order_email, order_number, order_address, grand_total, quantity_list, item_list)
         
-        return render_template("order_congrats.html")
+        return redirect(url_for("order_congrats"))
     else:
         return render_template("order_food.html")
 
+
+@app.route('/order_congrats')
+def order_congrats():
+    order_number = session.get("cust_order_number")
+    
+    cust_details, menu_details = get_order_details(order_number)
+    
+    return render_template("order_congrats.html", cust_details=cust_details, menu_details=menu_details)
 
 
 # For Membership stuff

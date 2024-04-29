@@ -112,3 +112,33 @@ def add_order(name, email, number, address, totalBill, quantityList, itemList):
         conn.commit()
     
     conn.close()
+    
+def get_order_details(number):
+    conn = open_connection()
+    
+    with conn.cursor as cursor:
+        sql = '''
+        SELECT c.Name, c.PhoneNumber, ao.totalBill
+        FROM customers as c
+        INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
+        WHERE c.PhoneNumber = %s
+        AND ao.orderID = (SELECT max(orderID) FROM any_order WHERE PhoneNumber = %s);
+        '''
+        cursor.execute(sql, (number, number))
+        customer_bill_details = cursor.fetchall()
+        
+    with conn.cursor as cursor:
+        sql = '''
+        SELECT mi.itemName, mi.price
+        FROM customers as c
+        INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
+        INNER JOIN order_items as oi ON ao.orderID = oi.orderID
+        INNER JOIN menu_items as mi on oi.itemID = mi.itemID
+        WHERE c.PhoneNumber = %s;
+        '''
+        cursor.execute(sql, (number))
+        menu_details = cursor.fetchall()
+        
+    return customer_bill_details, menu_details
+        
+        
