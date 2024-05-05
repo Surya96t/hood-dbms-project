@@ -65,7 +65,7 @@ def add_membership(name, email, number, dob, address):
         result = cursor.fetchone()
         if result:
             sql = "INSERT INTO customers membership VALUES (%s)"
-            cursor.execute(sql, (True))
+            cursor.execute(sql, True)
             conn.commit()
         else:
             sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
