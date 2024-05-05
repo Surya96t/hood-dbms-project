@@ -464,3 +464,39 @@ header .logo a{
     padding: 0 10px;
     color: black;
 }
+
+.mem-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.mem-input-box:nth-child(2n){
+    justify-content: end;
+}
+
+.mem-input-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    padding-bottom: 15px;
+}
+
+.mem-input-box label{
+    width: 95%;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    font-weight: 400;
+    margin: 5px 0;
+}
+
+.mem-input-box input{
+    height: 40px;
+    width: 95%;
+    border-radius: 7px;
+    outline: none;
+    border: 1px solid rgb(255, 255, 255);
+    padding: 0 10px;
+    color: black;
+}

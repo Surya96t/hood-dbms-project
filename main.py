@@ -125,15 +125,6 @@ def order_food():
         return render_template("order_food.html")
 
 
-@app.route('/order_congrats')
-def order_congrats():
-    order_number = session.get("cust_order_number")
-    
-    cust_details, menu_details = get_order_details(order_number)
-    
-    return render_template("order_congrats.html", cust_details=cust_details, menu_details=menu_details)
-
-
 # For Membership stuff
 
 @app.route('/new_membership')
