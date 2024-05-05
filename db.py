@@ -59,11 +59,21 @@ def get_reservation(number):
 def add_membership(name, email, number, dob, address):
     conn = open_connection()
     
-    # Insert the data into customer table
     with conn.cursor() as cursor:
-        sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
-        cursor.execute(sql, (name, email, number, address, dob, True))
-        conn.commit()
+        check_num = f"SELECT PhoneNumber FROM customers WHERE PhoneNumber = {number}"
+        cursor.execute(check_num)
+        result = cursor.fetchone()
+        if result:
+            pass
+        else:
+            sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
+            cursor.execute(sql, (name, email, number, address, dob, True))
+            conn.commit()
+    # # Insert the data into customer table
+    # with conn.cursor() as cursor:
+    #     sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
+    #     cursor.execute(sql, (name, email, number, address, dob, True))
+    #     conn.commit()
         
     conn.close()
     
