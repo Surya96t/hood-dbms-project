@@ -500,3 +500,7 @@ header .logo a{
     padding: 0 10px;
     color: black;
 }
+
+th, td {
+    padding: 15px;
+  }

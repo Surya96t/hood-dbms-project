@@ -17,11 +17,14 @@
             <p><br>Grand Total: {{cust.totalBill}}</p>
         {% endfor %}  -->
 
-        {% for i in menu_details %}
-            <table>
+        
+        <table>
+            <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
+            {% for i in menu_details %}
                 <tr><td>{{i.itemName}}</td> <td>{{i.price}}</td><td>{{i.quantity}}</td></tr>
-            </table>
-        {% endfor %} 
+            {% endfor %} 
+        </table>
+        
 
         <!-- {% for i in menu_details %}
             <p><br>{{i.itemName}}</p>
