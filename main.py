@@ -150,7 +150,7 @@ def add_member():
 
     add_membership(name, email, number, dob, address)
     
-    return redirect(url_for('member_congrats.html'))
+    return redirect(url_for('member_congrats'))
 
 
 @app.route('/member_congrats')
