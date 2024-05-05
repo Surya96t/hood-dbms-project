@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, request, url_for, jsonify, session
-from db import add_reservation, add_membership, get_reservation, add_order, get_cust_order_details, get_items_order_detail
+from db import add_reservation, add_membership, get_reservation, add_order, get_cust_order_details, get_items_order_detail, get_menu
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -43,14 +43,10 @@ def check_res():
     else:
         return render_template("check_reservation.html")
 
-
-# View the reservation details
-@app.route('/vw_res')
-def vw_res():
-    return render_template('view_reservation.html')
-
-
-
+@app.route('/view_menu')
+def view_menu():
+    menu = get_menu()
+    return render_template("view_menu.html", menu=menu)
 
 # For Food Ordering stuff 
 

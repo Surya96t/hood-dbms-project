@@ -148,3 +148,11 @@ def get_items_order_detail(number):
     return menu_details
         
         
+def get_menu():
+    conn = open_connection()
+
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT itemName, description, price FROM menu_items;")
+        items = cursor.fetchall()
+
+    return items
