@@ -5,7 +5,10 @@
 <div class="body-container-menu">
     <div class="menu-container">
         <h1 class="menu-title">Menu Items</h1>
-        {% for item in menu %}
-            <tr><td>{{item.itemName}}</td> <td>{{item.description}}</td><td>{{item.price}}</td></tr>
-        {% endfor %}
+        <table>
+            <tr><th>Item</th><th>Description</th><th>Price</th></tr>
+            {% for item in menu %}
+                <tr><td>{{item.itemName}}</td> <td>{{item.description}}</td><td>{{item.price}}</td></tr>
+            {% endfor %}
+        </table>
 {% endblock %}
