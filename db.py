@@ -144,7 +144,7 @@ def get_items_order_detail(number):
 
     with conn.cursor() as cursor:
         sql = '''
-        SELECT mi.itemName, mi.price
+        SELECT mi.itemName, mi.price, oi.quantity
         FROM customers as c
         INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
         INNER JOIN order_items as oi ON ao.orderID = oi.orderID
