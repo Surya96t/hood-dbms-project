@@ -5,17 +5,31 @@
 <div class="body-container-menu">
     <div class="menu-container">
         <h1 class="menu-title">Congrats! Order Placed!</h1>
-        
         {% for cust in cust_details %}
+            <table>
+                <tr><th>Name: {{cust.name}}</th><th>Number: {{cust.PhoneNumber}}</th><th>Grand Total: {{cust.totalBill}}</th></tr>
+            </table>
+        {% endfor %} 
+
+        <!-- {% for cust in cust_details %}
             <p><br>Name: {{cust.name}}</p>
             <p><br>Number: {{cust.PhoneNumber}}</p>
             <p><br>Grand Total: {{cust.totalBill}}</p>
-        {% endfor %} 
+        {% endfor %}  -->
 
-        {% for i in menu_details %}
+        
+        <table>
+            <tr><th>Item</th><th>Price</th><th>Quantity</th></tr>
+            {% for i in menu_details %}
+                <tr><td>{{i.itemName}}</td> <td>{{i.price}}</td><td>{{i.quantity}}</td></tr>
+            {% endfor %} 
+        </table>
+        
+
+        <!-- {% for i in menu_details %}
             <p><br>{{i.itemName}}</p>
             <p><br>{{i.price}}</p>
-        {% endfor %} 
+        {% endfor %}  -->
     </div>
      
 

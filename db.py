@@ -46,7 +46,11 @@ def add_reservation(name, email, number, date, time, size, splreq):
 def get_reservation(number):
     conn = open_connection()
     with conn.cursor() as cursor:
-        sql = f"SELECT c.name, c.email, c.PhoneNumber, r.reservationDateTime, r.size, r.specialRequests FROM customers AS c INNER JOIN reservation AS r ON c.PhoneNumber = r.PhoneNumber WHERE c.PhoneNumber = {number};"     
+        sql = f"""
+        SELECT c.name, c.email, c.PhoneNumber, r.reservationDateTime, r.size, r.specialRequests 
+        FROM customers AS c INNER JOIN reservation AS r ON c.PhoneNumber = r.PhoneNumber 
+        WHERE c.PhoneNumber = {number}
+        AND r.reservationID = (SELECT max(reservationID) FROM reservation WHERE PhoneNumber = {number});"""     
         cursor.execute(sql)
         reservation_details = cursor.fetchall()
         return reservation_details
@@ -134,7 +138,7 @@ def get_items_order_detail(number):
 
     with conn.cursor() as cursor:
         sql = '''
-        SELECT mi.itemName, mi.price
+        SELECT mi.itemName, mi.price, oi.quantity
         FROM customers as c
         INNER JOIN any_order AS ao ON c.PhoneNumber = ao.PhoneNumber
         INNER JOIN order_items as oi ON ao.orderID = oi.orderID
