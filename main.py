@@ -1,8 +1,8 @@
-from flask import Flask, render_template, redirect, request, url_for, jsonify, session
+from flask import Flask, render_template, redirect, request, url_for, jsonify
 from db import add_reservation, add_membership, get_reservation, add_order, get_cust_order_details, get_items_order_detail, get_menu
 
 app = Flask(__name__)
-app.secret_key = "super secret key"
+
 
 @app.route('/')
 def home():
@@ -110,8 +110,6 @@ def order_food():
         order_email = request.form["order-email"]
         order_number = request.form["order-num"]
         order_address = request.form["order-address"]
-
-        session["cust_order_number"] = order_number
         
         add_order(order_name, order_email, order_number, order_address, grand_total, quantity_list, item_list)
 

@@ -28,19 +28,14 @@ def open_connection():
 def add_reservation(name, email, number, date, time, size, splreq):
     conn = open_connection()
     
-    # First insert into the customer table to generate a customerID
+    # First insert into the customer table 
     with conn.cursor() as cursor:
         sql = "INSERT INTO customers (name, email, PhoneNumber) VALUES(%s, %s, %s)"
         cursor.execute(sql, (name, email, number))
         conn.commit()
     
-    # Second get the newly generated customerID based on email 
-    # with conn.cursor() as cursor:
-    #     sql = "SELECT PhoneNumber FROM customers WHERE email = %s"
-    #     cursor.execute(sql, (email))
-    #     cust_id = cursor.fetchone()[0]  # PhoneNumber instead of cust_id
         
-    # Third create the reservation (insert details into reservation table)
+    # Second create the reservation (insert details into reservation table)
     with conn.cursor() as cursor:
         sql = "INSERT INTO reservation (PhoneNumber, reservationDateTime, size, specialRequests) VALUES(%s, %s, %s, %s)"
         cursor.execute(sql, (number, f"{date} {time}", size, splreq))
@@ -69,11 +64,6 @@ def add_membership(name, email, number, dob, address):
             sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
             cursor.execute(sql, (name, email, number, address, dob, True))
             conn.commit()
-    # # Insert the data into customer table
-    # with conn.cursor() as cursor:
-    #     sql = "INSERT INTO customers (name, email, PhoneNumber, address, dob, membership) VALUES (%s, %s, %s, %s, %s, %s)"
-    #     cursor.execute(sql, (name, email, number, address, dob, True))
-    #     conn.commit()
         
     conn.close()
     
